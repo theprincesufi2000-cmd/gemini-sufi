@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#060913"><title>Gemini AI Pro V3</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div id="authView" class="authView">
+  <div class="authCard">
+    <div class="logo big">✦</div><h1>Gemini AI Pro</h1><p id="authSub">سجّل الدخول للمتابعة</p>
+    <input id="name" class="authInput hidden" placeholder="الاسم" maxlength="80">
+    <input id="email" class="authInput" type="email" placeholder="البريد الإلكتروني" autocomplete="email">
+    <input id="password" class="authInput" type="password" placeholder="كلمة المرور" autocomplete="current-password">
+    <button id="authBtn" class="primary">تسجيل الدخول</button>
+    <button id="toggleAuth" class="linkBtn">إنشاء حساب جديد</button>
+    <div id="authError" class="error"></div>
+  </div>
+</div>
+
+<div id="appView" class="app hidden">
+<header class="topbar"><div class="brand"><div class="logo">✦</div><div><b>Gemini AI Pro</b><small id="status">متصل</small></div></div><div class="actions"><button id="newChat" class="tool">＋</button><button id="memoryBtn" class="tool">◈</button><button id="logout" class="tool">↪</button></div></header>
+<main id="chat" class="chat"><section id="empty" class="welcome"><div class="orb">✦</div><h1>ماذا تريد أن تعرف؟</h1><p>حسابك وذاكرتك ومحادثاتك محفوظة بشكل منفصل عن المستخدمين الآخرين.</p><div class="chips"><button>اكتب لي خطة احترافية</button><button>حلل هذا الموضوع</button><button>اشرح لي بالتفصيل</button></div></section></main>
+<form id="composer" class="composer"><textarea id="input" rows="1" maxlength="20000" placeholder="اكتب رسالتك…"></textarea><button id="send" type="submit">➤</button></form>
+</div>
+
+<aside id="memoryPanel" class="panel hidden"><div class="panelHead"><h2>ذاكرتي</h2><button id="closeMemory">×</button></div><p class="hint">الذاكرة خاصة بحسابك فقط.</p><div class="memoryAdd"><input id="memoryInput" maxlength="2000" placeholder="أضف معلومة طويلة الأمد"><button id="saveMemory">حفظ</button></div><div id="memoryList"></div></aside>
+
+<script type="module" src="app.js"></script>
+</body></html>
