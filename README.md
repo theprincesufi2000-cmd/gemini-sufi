@@ -1,85 +1,25 @@
-# Gemini AI Pro V3 — Firebase
+# Gemini Sufi V4.1 — Render Ready
 
-نسخة متعددة المستخدمين تعتمد على Firebase Authentication وRealtime Database.
+## Deploy Backend
+1. Push this repository to GitHub.
+2. In Render choose **New Web Service** and select the repository.
+3. Render can also use `render.yaml`.
+4. Required environment variables:
+   - `GEMINI_API_KEY`
+   - `GEMINI_MODEL=gemini-3.5-flash`
+   - `FIREBASE_DATABASE_URL=https://gemini-ff6e0-default-rtdb.firebaseio.com`
+   - `FIREBASE_SERVICE_ACCOUNT_JSON` = the complete Firebase Admin service-account JSON on one line
+5. Deploy.
+6. Open `/api/health` on your Render HTTPS URL.
 
-## ما الجديد؟
+## Connect the app
+Edit `public/config.js`:
+`BACKEND_URL: "https://YOUR-SERVICE.onrender.com"`
 
-- تسجيل دخول بالبريد وكلمة المرور.
-- إنشاء حساب جديد.
-- لكل مستخدم UID خاص.
-- ملف profile داخل `users/{uid}/profile`.
-- ذاكرة مستقلة داخل `users/{uid}/memories`.
-- محادثات مستقلة داخل `users/{uid}/chats`.
-- Firebase Security Rules تمنع المستخدم من قراءة بيانات مستخدم آخر.
-- Backend يتحقق من Firebase ID Token باستخدام Firebase Admin.
-- Gemini API key موجود في Backend فقط.
-- Streaming حقيقي من Gemini.
-- استخراج ذاكرة تلقائي بعد الرد.
-- ذاكرة يدوية.
-- Android package: `com.ai.sufi`.
+Then commit/push and build the APK.
 
-## 1. Firebase
+## Firebase
+Enable Email/Password in Authentication. Apply `firebase/database.rules.json` to Realtime Database.
 
-أنشئ/فعّل:
-- Authentication → Email/Password
-- Realtime Database
-- ضع قواعد `firebase/database.rules.json` في Realtime Database Rules.
-
-ملف `firebase/firebase-config.js` يحتوي إعدادات عميل Firebase التي زودتني بها.
-
-## 2. Firebase Admin
-
-من Firebase Console:
-Project Settings → Service accounts → Generate new private key.
-
-احفظ الملف محلياً باسم:
-
-`firebase/service-account.json`
-
-ولا ترفعه إلى GitHub. `.gitignore` يمنع ذلك.
-
-## 3. البيئة
-
-```bash
-cp .env.example .env
-npm install
-npm start
-```
-
-ضع مفتاح Gemini في `.env`.
-
-## 4. Android
-
-```bash
-npx cap add android
-npx cap sync android
-npx cap open android
-```
-
-مهم: الـAPK لا يحتوي GEMINI_API_KEY. يجب أن يكون Backend منشوراً على HTTPS في الإنتاج.
-
-## 5. قاعدة البيانات
-
-البنية:
-
-users/
-  UID/
-    profile/
-    memories/
-      MEMORY_ID/
-        text
-        createdAt
-        source
-    chats/
-      CHAT_ID/
-        createdAt
-        userText
-        assistantText
-
-## 6. ملاحظة أمنية
-
-مفتاح Firebase Web API الظاهر في كود العميل ليس بديلاً عن Security Rules. الحماية الحقيقية لبيانات RTDB تأتي من Authentication + Rules. أما مفتاح Gemini فيجب أن يبقى في الخادم.
-
-## 7. Google Sign-In
-
-هذا الإصدار يستخدم Email/Password لأنه يعمل مباشرة في WebView/Capacitor دون إدخال OAuth native configuration. يمكن إضافة Google Sign-In لاحقاً باستخدام Capacitor native plugin، مع إعداد SHA-1/SHA-256 وOAuth في Firebase.
+## Security
+The Gemini key and Firebase Admin credentials stay on Render. Do not commit them.

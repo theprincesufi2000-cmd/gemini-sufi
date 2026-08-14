@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: gemini-sufi-backend
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash
+      - key: FIREBASE_DATABASE_URL
+        value: https://gemini-ff6e0-default-rtdb.firebaseio.com
+      - key: FIREBASE_SERVICE_ACCOUNT_JSON
+        sync: false
+      - key: CORS_ORIGINS
+        value: "*"
