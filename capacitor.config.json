@@ -1,0 +1,6 @@
+{
+  "appId":"com.ai.sufi",
+  "appName":"Gemini AI Pro",
+  "webDir":"public",
+  "server":{"androidScheme":"https"}
+}

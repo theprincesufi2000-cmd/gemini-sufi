@@ -1,0 +1,9 @@
+.env
+node_modules/
+.DS_Store
+*.log
+firebase/service-account.json
+android/.gradle/
+android/app/build/
+android/build/
+android/.idea/
