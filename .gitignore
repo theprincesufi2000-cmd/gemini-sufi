@@ -1,6 +1,5 @@
 .env
 node_modules/
+firebase/service-account.json
 android/
 *.log
-firebase/service-account.json
-.DS_Store

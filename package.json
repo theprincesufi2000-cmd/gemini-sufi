@@ -1,15 +1,26 @@
 {
   "name": "gemini-sufi-v4",
-  "version": "4.1.0",
+  "version": "4.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "start": "node server/server.js",
-    "dev": "node --watch server/server.js"
+    "dev": "node --watch server/server.js",
+    "android:add": "npx cap add android",
+    "android:sync": "npx cap sync android",
+    "android:debug": "npx cap sync android && cd android && ./gradlew assembleDebug",
+    "android:release": "npx cap sync android && cd android && ./gradlew assembleRelease",
+    "android:aab": "npx cap sync android && cd android && ./gradlew bundleRelease"
   },
   "dependencies": {
-    "dotenv": "^16.4.7",
+    "@google/genai": "^1.18.0",
+    "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "firebase-admin": "^13.5.0"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/cli": "^8.0.0",
+    "@capacitor/core": "^8.0.0"
   }
 }
